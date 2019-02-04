@@ -1,43 +1,48 @@
 <?php
+/*
+This is a mock-LTI-consumer, it is taking the place of the LMS
+
+Remember, PHP's start server command is:
+    $ php -S localhost:8080
+*/
+
+
 # ------------------------------
 # START CONFIGURATION SECTION
-# Start server:
-#     $ php -S localhost:8080
-#
-$launch_url = "http://www.imsglobal.org/developers/BLTI/tool.php";
+$launch_url = "https://lti.tools/saltire/tp"; // this is the modern test tool url that doesn't require account
 $key = "12345";
 $secret = "secret";
 $launch_data = array(
-	"user_id" => "292832126",
-	"roles" => "Instructor",
-	"resource_link_id" => "120988f929-274612",
-	"resource_link_title" => "Weekly Blog",
+    "lti_version" => "LTI-1p0", // ! required
+    "lti_message_type" => "basic-lti-launch-request", // ! required
+    "resource_link_id" => "120988f929-274612", // ! required
+	"user_id" => "292832126", // recomended
+    "roles" => "Instructor", // recomended
+	"resource_link_title" => "My SICK Blog",  // recomended
 	"resource_link_description" => "A weekly blog.",
-	"lis_person_name_full" => "Jane Q. Public",
-	"lis_person_name_family" => "Public",
-	"lis_person_name_given" => "Given",
+	"lis_person_name_full" => "Jane Q. Public", // recomended
+	"lis_person_name_family" => "Public", // recomended
+	"lis_person_name_given" => "Given", // recomended
 	"lis_person_contact_email_primary" => "user@school.edu",
 	"lis_person_sourcedid" => "school.edu:user",
-	"context_id" => "456434513",
-	"context_title" => "Design of Personal Environments",
+	"context_id" => "456434513", // recomended
+	"context_title" => "This is the context title right here",
 	"context_label" => "SI182",
 	"tool_consumer_instance_guid" => "lmsng.school.edu",
 	"tool_consumer_instance_description" => "University of School (LMSng)"
 );
-#
 # END OF CONFIGURATION SECTION
 # ------------------------------
-$now = new DateTime();
-$launch_data["lti_version"] = "LTI-1p0";
-$launch_data["lti_message_type"] = "basic-lti-launch-request";
+
 # Basic LTI uses OAuth to sign requests
 # OAuth Core 1.0 spec: http://oauth.net/core/1.0/
-$launch_data["oauth_callback"] = "about:blank";
-$launch_data["oauth_consumer_key"] = $key;
-$launch_data["oauth_version"] = "1.0";
-$launch_data["oauth_nonce"] = uniqid('', true);
-$launch_data["oauth_timestamp"] = $now->getTimestamp();
-$launch_data["oauth_signature_method"] = "HMAC-SHA1";
+$now = new DateTime();
+$launch_data["oauth_callback"] = "about:blank"; // * required
+$launch_data["oauth_consumer_key"] = $key; // * required
+$launch_data["oauth_version"] = "1.0"; // * required
+$launch_data["oauth_nonce"] = uniqid('', true); // * required
+$launch_data["oauth_timestamp"] = $now->getTimestamp(); // * required
+$launch_data["oauth_signature_method"] = "HMAC-SHA1"; // * required
 # In OAuth, request parameters must be sorted by name
 $launch_data_keys = array_keys($launch_data);
 sort($launch_data_keys);
@@ -54,6 +59,7 @@ $signature = base64_encode(hash_hmac("sha1", $base_string, $secret, true));
 <head></head>
 <!-- <body onload="document.ltiLaunchForm.submit();"> -->
 <body>
+<h2>The Greatest LMS of ALL TIME</h2>
 <form id="ltiLaunchForm" name="ltiLaunchForm" method="POST" action="<?php printf($launch_url); ?>">
 <?php foreach ($launch_data as $k => $v ) { ?>
 	<input type="hidden" name="<?php echo $k ?>" value="<?php echo $v ?>">
