@@ -1,0 +1,23 @@
+{
+  "name": "lti-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npx nodemon server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "hapi": "^18.0.1",
+    "inert": "^5.1.2",
+    "nodemon": "^1.18.9"
+  },
+  "devDependencies": {
+    "eslint": "^5.13.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0"
+  }
+}
