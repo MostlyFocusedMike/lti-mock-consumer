@@ -10,13 +10,10 @@
 
     <form method="POST" action="{{ launchURL }}">
         {{#each launchData}}
-            <input name="{{@key}}" value="{{this}}">
+            <input type="hidden" name="{{@key}}" value="{{this}}">
         {{/each}}
         <input type="hidden" name="oauth_signature" value="{{ signature }}">
-        <input type="submit" value="Submit">
+        <input type="submit" value="Launch">
     </form>
-    {{ signature }}
-    <p>and the goal is:</p>
-    {{ goal }}
 </body>
 </html>
