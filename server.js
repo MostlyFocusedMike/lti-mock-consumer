@@ -15,14 +15,24 @@ const serverConfig = {
 const server = new Hapi.Server(serverConfig);
 
 const plugins = [
-    require('inert'),
+    require('vision'),
 ];
 
 const launch = async () => {
-    await server.register(plugins);
+    await server.register(require('vision')); // load templating plugin
+
+    server.views({
+        engines: {
+            html: require('handlebars'),
+        },
+        relativeTo: Path.join(__dirname, 'lib/templates'),
+        path: '.',
+        isCached: false,
+        // helpersPath: 'helpers',
+    });
 
     server.route([
-        require('./lib/routes/static'),
+        require('./lib/routes/home'),
     ]);
 
     try {

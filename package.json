@@ -1,7 +1,7 @@
 {
   "name": "lti-demo",
   "version": "1.0.0",
-  "description": "",
+  "description": "A Node js implementation of a fakem, basic-LTI tool consumer",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,9 +11,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "crypto": "^1.0.1",
+    "handlebars": "^4.0.12",
     "hapi": "^18.0.1",
-    "inert": "^5.1.2",
-    "nodemon": "^1.18.9"
+    "nodemon": "^1.18.9",
+    "vision": "^5.4.4"
   },
   "devDependencies": {
     "eslint": "^5.13.0",

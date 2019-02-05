@@ -33,7 +33,7 @@ $launch_data = array(
 	"context_title" => "Intro to Computers: CS 101", // * recomended: the name of the course
 	"context_label" => "SI182", // * reocmended: short name or course code of the course
 	"tool_consumer_instance_guid" => "lms.princeton.edu", // * STRONGLY recomended: unique id referencing the instance from which the user is accessing the app.
-    "tool_consumer_instance_description" => "Princton University (LMSng)" // optional: description of the instance from which the user is accessing the app.
+    "tool_consumer_instance_description" => "Princton University LMS" // optional: description of the instance from which the user is accessing the app.
 );
 // * for a full list of params: https://www.edu-apps.org/code.html#params
 # END OF CONFIGURATION SECTION
@@ -45,8 +45,8 @@ $now = new DateTime();
 $launch_data["oauth_callback"] = "about:blank";
 $launch_data["oauth_consumer_key"] = $key;
 $launch_data["oauth_version"] = "1.0";
-$launch_data["oauth_nonce"] = uniqid('', true);
-$launch_data["oauth_timestamp"] = $now->getTimestamp();
+$launch_data["oauth_nonce"] = '5c58b57a1a5e2'; # uniqid('', true);
+$launch_data["oauth_timestamp"] = $now->getTimestamp(); # '1549386076';
 $launch_data["oauth_signature_method"] = "HMAC-SHA1";
 # In OAuth, request parameters must be sorted by name
 $launch_data_keys = array_keys($launch_data);
@@ -61,16 +61,22 @@ $signature = base64_encode(hash_hmac("sha1", $base_string, $secret, true));
 ?>
 
 <html>
-<head></head>
+<head>
+    <title>PHP LMS</title>
+</head>
 <!-- <body onload="document.ltiLaunchForm.submit();"> -->
 <body>
 <h2>The Greatest LMS of ALL TIME</h2>
 <form id="ltiLaunchForm" name="ltiLaunchForm" method="POST" action="<?php printf($launch_url); ?>">
 <?php foreach ($launch_data as $k => $v ) { ?>
-	<input type="hidden" name="<?php echo $k ?>" value="<?php echo $v ?>">
+    <label for=""><?php echo $k ?></label>
+	<input name="<?php echo $k ?>" value="<?php echo $v ?>">
 <?php } ?>
-	<input type="hidden" name="oauth_signature" value="<?php echo $signature ?>">
+    <input name="oauth_signature" value="<?php echo $signature ?>">
+    <p><?php echo $signature ?></p>
 	<button type="submit">Launch</button>
 </form>
+
+<?php echo $base_string; ?>
 <body>
 </html>
