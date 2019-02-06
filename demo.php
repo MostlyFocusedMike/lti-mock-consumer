@@ -1,16 +1,15 @@
 <?php
 /*
-This is a mock-LTI-consumer, it is taking the place of the LMS
-The mock-lti-provider (the fake tool we're integrating) is mocked by lit.tools/saltire/tp
+ *  original link to this gist: https://gist.github.com/matthanger/1171921
+    This is a mock-LTI-consumer, it is taking the place of the LMS
+    The mock-lti-provider (the fake tool we're integrating) is mocked by lit.tools/saltire/tp
 
-below there are some terms, they mean the following:
-context: the course
-resource: the link from inside the course section where the provider is launched
+    context: the course
+    resource: the link from inside the course section where the provider is launched
 
-Remember, PHP's start server command is:
-    $ php -S localhost:8080
+    To start PHP's built in server, cd into this directory and do:
+        $ php -S localhost:8080
 */
-
 
 # ------------------------------
 # START CONFIGURATION SECTION
@@ -34,8 +33,9 @@ $launch_data = array(
 	"context_label" => "SI182", // * reocmended: short name or course code of the course
 	"tool_consumer_instance_guid" => "lms.princeton.edu", // * STRONGLY recomended: unique id referencing the instance from which the user is accessing the app.
     "tool_consumer_instance_description" => "Princton University (LMS)" // optional: description of the instance from which the user is accessing the app.
+    // * check out more params at: https://www.edu-apps.org/code.html#params
+
 );
-// * for a full list of params: https://www.edu-apps.org/code.html#params
 # END OF CONFIGURATION SECTION
 # ------------------------------
 

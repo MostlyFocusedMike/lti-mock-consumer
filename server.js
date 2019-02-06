@@ -1,26 +1,18 @@
 const Hapi = require('hapi');
 const Path = require('path');
 
-
 const serverConfig = {
     host: '0.0.0.0',
     port: 3030,
-    routes: {
-        files: {
-            relativeTo: Path.join(__dirname, 'lib/public'),
-        },
-    },
 };
 
 const server = new Hapi.Server(serverConfig);
 
-const plugins = [
-    require('vision'),
-];
+const startServer = async () => {
+    // load templating plugin
+    await server.register(require('vision'));
 
-const launch = async () => {
-    await server.register(require('vision')); // load templating plugin
-
+    // configure templating plugin
     server.views({
         engines: {
             html: require('handlebars'),
@@ -28,9 +20,9 @@ const launch = async () => {
         relativeTo: Path.join(__dirname, 'lib/templates'),
         path: '.',
         isCached: false,
-        // helpersPath: 'helpers',
     });
 
+    // load all routes
     server.route([
         require('./lib/routes/home'),
     ]);
@@ -44,4 +36,4 @@ const launch = async () => {
     console.log('Server running at: ', server.info.uri);
 };
 
-launch();
+startServer();

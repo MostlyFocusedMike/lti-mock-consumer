@@ -11,10 +11,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "crypto": "^1.0.1",
     "handlebars": "^4.0.12",
     "hapi": "^18.0.1",
     "nodemon": "^1.18.9",
+    "oauth-sign": "^0.9.0",
     "vision": "^5.4.4"
   },
   "devDependencies": {

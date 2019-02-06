@@ -3,16 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fake LMS</title>
+    <title>Fake Node LMS</title>
+    <style>
+        html {
+            text-align: center;
+            font-family: sans-serif;
+            background: #FAFAFA;
+        }
+        h3 {
+            width: 40%;
+            min-width: 30rem;
+            text-align: center;
+            display: inline-block;
+            background: #DEDEDE;
+            padding: 1rem 1rem;
+        }
+    </style>
 </head>
 <body>
     <h1>The Greatest LMS that never was!</h1>
-
+    <h3>
+        This is a mock "Tool Consumer", or LMS, that does nothing but launch a
+        mock "Tool Provider." In this case the Tool Provider is just part of
+        IMS global's testing suite that verifies your LMS is sending the proper
+        LTI and OAuth data to the tool provider.
+    </h3>
     <form method="POST" action="{{ launchURL }}">
-        {{#each launchData}}
+        <!-- Iterate through the given launch data in hidden fields -->
+        {{#each launchParams}}
             <input type="hidden" name="{{@key}}" value="{{this}}">
         {{/each}}
-        <input type="hidden" name="oauth_signature" value="{{ signature }}">
         <input type="submit" value="Launch">
     </form>
 </body>
