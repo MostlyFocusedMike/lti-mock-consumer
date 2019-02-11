@@ -25,6 +25,7 @@ const startServer = async () => {
     // load all routes
     server.route([
         require('./lib/routes/home'),
+        require('./lib/routes/return'),
     ]);
 
     try {

@@ -5,3 +5,5 @@
 ## useful links
 
 - [medium article: Simple LTI Tool Consumer in HTML and JavaScript](https://medium.com/lcom-techblog/simple-lti-tool-consumer-in-html-and-javascript-72ca153d7a83) and its [github](https://github.com/learningcom/learningcom.github.io/blob/master/ltitest/index.html)
+
+- [repo for a fake node tool provider](https://github.com/omsmith/ims-lti)
